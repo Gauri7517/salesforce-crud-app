@@ -1,10 +1,10 @@
 package com.gauri.salesforce_crud;
 
-import java.util.Map;
-
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
 
@@ -12,6 +12,16 @@ import org.springframework.web.client.RestClient;
 public class SalesforceController {
 
     private final RestClient restClient = RestClient.create();
+
+    private final String salesforceUrl =
+            "https://orgfarm-b64f39409c-dev-ed.develop.my.salesforce.com";
+
+    private final String apiVersion = "v66.0";
+
+
+    // =====================================================
+    // GET - Fetch all Salesforce Accounts
+    // =====================================================
 
     @GetMapping("/salesforce/accounts")
     public String getAccounts(
@@ -21,16 +31,45 @@ public class SalesforceController {
         String accessToken =
                 authorizedClient.getAccessToken().getTokenValue();
 
-        String salesforceUrl =
-                "https://orgfarm-b64f39409c-dev-ed.develop.my.salesforce.com";
-
         String queryUrl =
                 salesforceUrl
-                + "/services/data/v66.0/query?q=SELECT+Id,Name+FROM+Account";
+                + "/services/data/"
+                + apiVersion
+                + "/query?q=SELECT+Id,Name+FROM+Account";
 
         return restClient.get()
                 .uri(queryUrl)
                 .header("Authorization", "Bearer " + accessToken)
+                .retrieve()
+                .body(String.class);
+    }
+
+
+    // =====================================================
+    // POST - Create new Salesforce Account
+    // =====================================================
+
+    @PostMapping("/salesforce/accounts")
+    public String createAccount(
+            @RequestBody AccountRequest request,
+
+            @RegisteredOAuth2AuthorizedClient("salesforce")
+            OAuth2AuthorizedClient authorizedClient) {
+
+        String accessToken =
+                authorizedClient.getAccessToken().getTokenValue();
+
+        String createUrl =
+                salesforceUrl
+                + "/services/data/"
+                + apiVersion
+                + "/sobjects/Account/";
+
+        return restClient.post()
+                .uri(createUrl)
+                .header("Authorization", "Bearer " + accessToken)
+                .header("Content-Type", "application/json")
+                .body(request)
                 .retrieve()
                 .body(String.class);
     }
