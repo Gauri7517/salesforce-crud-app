@@ -5,6 +5,7 @@ import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2Aut
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
@@ -92,5 +93,35 @@ public class SalesforceController {
                 .header("Authorization", "Bearer " + accessToken)
                 .retrieve()
                 .body(String.class);
+    }
+
+
+    // PUT - Update Account
+    @PutMapping("/salesforce/accounts/{id}")
+    public String updateAccount(
+            @PathVariable String id,
+            @RequestBody AccountRequest request,
+            @RegisteredOAuth2AuthorizedClient("salesforce")
+            OAuth2AuthorizedClient authorizedClient) {
+
+        String accessToken =
+                authorizedClient.getAccessToken().getTokenValue();
+
+        String updateUrl =
+                salesforceUrl
+                + "/services/data/"
+                + apiVersion
+                + "/sobjects/Account/"
+                + id;
+
+        restClient.patch()
+                .uri(updateUrl)
+                .header("Authorization", "Bearer " + accessToken)
+                .header("Content-Type", "application/json")
+                .body(request)
+                .retrieve()
+                .toBodilessEntity();
+
+        return "Account updated successfully";
     }
 }
