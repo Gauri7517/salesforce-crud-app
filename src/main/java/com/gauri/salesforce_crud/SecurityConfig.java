@@ -19,9 +19,9 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
 
-            .oauth2Login(oauth -> oauth
-                .loginPage("/")
-            );
+            .oauth2Login(oauth -> {
+                // Default Spring Security OAuth2 login configuration
+            });
 
         return http.build();
     }

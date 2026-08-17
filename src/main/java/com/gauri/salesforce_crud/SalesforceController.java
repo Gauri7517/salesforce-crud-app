@@ -3,6 +3,7 @@ package com.gauri.salesforce_crud;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,10 +20,7 @@ public class SalesforceController {
     private final String apiVersion = "v66.0";
 
 
-    // =====================================================
-    // GET - Fetch all Salesforce Accounts
-    // =====================================================
-
+    // GET - Fetch all Accounts
     @GetMapping("/salesforce/accounts")
     public String getAccounts(
             @RegisteredOAuth2AuthorizedClient("salesforce")
@@ -45,14 +43,10 @@ public class SalesforceController {
     }
 
 
-    // =====================================================
-    // POST - Create new Salesforce Account
-    // =====================================================
-
+    // POST - Create Account
     @PostMapping("/salesforce/accounts")
     public String createAccount(
             @RequestBody AccountRequest request,
-
             @RegisteredOAuth2AuthorizedClient("salesforce")
             OAuth2AuthorizedClient authorizedClient) {
 
@@ -70,6 +64,32 @@ public class SalesforceController {
                 .header("Authorization", "Bearer " + accessToken)
                 .header("Content-Type", "application/json")
                 .body(request)
+                .retrieve()
+                .body(String.class);
+    }
+
+
+    // GET - Fetch Account by ID
+    @GetMapping("/salesforce/accounts/{id}")
+    public String getAccountById(
+            @PathVariable String id,
+            @RegisteredOAuth2AuthorizedClient("salesforce")
+            OAuth2AuthorizedClient authorizedClient) {
+
+        String accessToken =
+                authorizedClient.getAccessToken().getTokenValue();
+
+        String queryUrl =
+                salesforceUrl
+                + "/services/data/"
+                + apiVersion
+                + "/query?q=SELECT+Id,Name+FROM+Account+WHERE+Id='"
+                + id
+                + "'";
+
+        return restClient.get()
+                .uri(queryUrl)
+                .header("Authorization", "Bearer " + accessToken)
                 .retrieve()
                 .body(String.class);
     }
