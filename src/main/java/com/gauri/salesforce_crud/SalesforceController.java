@@ -2,6 +2,7 @@ package com.gauri.salesforce_crud;
 
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -123,5 +124,32 @@ public class SalesforceController {
                 .toBodilessEntity();
 
         return "Account updated successfully";
+    }
+
+
+    // DELETE - Delete Account
+    @DeleteMapping("/salesforce/accounts/{id}")
+    public String deleteAccount(
+            @PathVariable String id,
+            @RegisteredOAuth2AuthorizedClient("salesforce")
+            OAuth2AuthorizedClient authorizedClient) {
+
+        String accessToken =
+                authorizedClient.getAccessToken().getTokenValue();
+
+        String deleteUrl =
+                salesforceUrl
+                + "/services/data/"
+                + apiVersion
+                + "/sobjects/Account/"
+                + id;
+
+        restClient.delete()
+                .uri(deleteUrl)
+                .header("Authorization", "Bearer " + accessToken)
+                .retrieve()
+                .toBodilessEntity();
+
+        return "Account deleted successfully";
     }
 }
