@@ -1,0 +1,566 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7fb;
+  color: #172033;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  background: #0b5cab;
+  color: white;
+  padding: 25px 60px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.header p {
+  margin: 6px 0 0;
+  opacity: 0.9;
+}
+
+/* HEADER BUTTONS */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* LOGIN BUTTON */
+
+.login-btn {
+  background: white;
+  color: #0b5cab;
+
+  border: none;
+  border-radius: 6px;
+
+  padding: 11px 20px;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.login-btn:hover {
+  background: #e8f2ff;
+}
+
+/* REFRESH BUTTON */
+
+.refresh-btn {
+  background: white;
+  color: #0b5cab;
+
+  border: none;
+  border-radius: 6px;
+
+  padding: 11px 20px;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.refresh-btn:hover {
+  background: #e8f2ff;
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+  max-width: 1200px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.form-card,
+.accounts-card {
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 25px;
+
+  margin-bottom: 25px;
+
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.form-card h2,
+.accounts-card h2 {
+  margin-top: 0;
+}
+
+/* =========================
+   FORM
+========================= */
+
+form {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+input {
+  flex: 1;
+
+  min-width: 250px;
+
+  padding: 13px;
+
+  border: 1px solid #ccd4df;
+
+  border-radius: 6px;
+
+  font-size: 15px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #0b5cab;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.primary-btn {
+  background: #0b5cab;
+  color: white;
+
+  border: none;
+
+  padding: 13px 20px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  transition: 0.2s;
+}
+
+.primary-btn:hover {
+  background: #084a8a;
+}
+
+.primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancel-btn {
+  background: #777;
+  color: white;
+
+  border: none;
+
+  padding: 13px 20px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+}
+
+.cancel-btn:hover {
+  background: #666;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+  margin-bottom: 0;
+
+  color: #0b5cab;
+
+  font-weight: bold;
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.count {
+  background: #e8f2ff;
+
+  color: #0b5cab;
+
+  padding: 7px 12px;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 14px;
+
+  text-align: left;
+
+  border-bottom: 1px solid #e5e9ef;
+}
+
+th {
+  background: #f5f8fc;
+
+  font-weight: bold;
+}
+
+tr:hover {
+  background: #fafcff;
+}
+
+/* =========================
+   EDIT
+========================= */
+
+.edit-btn {
+  background: #e8f2ff;
+
+  color: #0b5cab;
+
+  border: none;
+
+  padding: 8px 14px;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  margin-right: 7px;
+}
+
+.edit-btn:hover {
+  background: #d8eaff;
+}
+
+/* =========================
+   DELETE
+========================= */
+
+.delete-btn {
+  background: #ffe8e8;
+
+  color: #d93025;
+
+  border: none;
+
+  padding: 8px 14px;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #ffd6d6;
+}
+
+/* =========================
+   LOADING / EMPTY
+========================= */
+
+.loading,
+.empty {
+  text-align: center;
+
+  padding: 30px;
+
+  color: #777;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .header {
+    padding: 20px;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 18px;
+  }
+
+  .header h1 {
+    font-size: 23px;
+  }
+
+  .header-actions {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 10px;
+  }
+
+  .login-btn,
+  .refresh-btn {
+    width: 100%;
+  }
+
+  .container {
+    margin: 20px auto;
+
+    padding: 0 12px;
+  }
+
+  .form-card,
+  .accounts-card {
+    padding: 18px;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  input {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+  .primary-btn,
+  .cancel-btn {
+    width: 100%;
+  }
+
+  .section-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 750px;
+  }
+  /* =========================
+   OBJECT SELECT
+========================= */
+
+.object-select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ccd4df;
+  border-radius: 6px;
+  font-size: 15px;
+  background: white;
+  color: #172033;
+  cursor: pointer;
+}
+
+.object-select:focus {
+  outline: none;
+  border-color: #0b5cab;
+}
+
+
+/* =========================
+   VIEW BUTTON
+========================= */
+
+.view-btn {
+  background: #eef7ee;
+  color: #218838;
+
+  border: none;
+
+  padding: 8px 14px;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  margin-right: 7px;
+}
+
+.view-btn:hover {
+  background: #dff0df;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
+
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+
+  width: 100%;
+
+  max-width: 600px;
+
+  max-height: 80vh;
+
+  overflow-y: auto;
+
+  border-radius: 12px;
+
+  padding: 30px;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+  margin-top: 0;
+
+  color: #172033;
+}
+
+.detail-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid #e5e9ef;
+}
+
+.detail-row strong {
+  color: #172033;
+}
+
+.detail-row span {
+  color: #555;
+
+  text-align: right;
+}
+
+.modal-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin-top: 25px;
+}
+
+
+/* =========================
+   ACTION BUTTON SPACING
+========================= */
+
+.view-btn,
+.edit-btn,
+.delete-btn {
+  margin-bottom: 5px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .detail-row {
+    flex-direction: column;
+
+    gap: 5px;
+  }
+
+  .detail-row span {
+    text-align: left;
+  }
+
+}
+}
