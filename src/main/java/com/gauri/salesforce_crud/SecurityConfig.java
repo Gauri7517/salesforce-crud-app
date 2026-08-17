@@ -1,5 +1,6 @@
 package com.gauri.salesforce_crud;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +13,9 @@ import java.util.List;
 
 @Configuration
 public class SecurityConfig {
+
+    @Value("${frontend.url:http://localhost:5173}")
+    private String frontendUrl;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)
@@ -29,20 +33,15 @@ public class SecurityConfig {
                     "/oauth2/**",
                     "/login/**"
                 ).permitAll()
-
                 .anyRequest().authenticated()
             )
 
             .oauth2Login(oauth -> oauth
-                .defaultSuccessUrl(
-                    "http://localhost:5173",
-                    true
-                )
+                .defaultSuccessUrl(frontendUrl, true)
             );
 
         return http.build();
     }
-
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -51,7 +50,12 @@ public class SecurityConfig {
                 new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173")
+                List.of(
+                    frontendUrl,
+                    "http://localhost:5173",
+                    "http://localhost:5174",
+                    "http://localhost:5175"
+                )
         );
 
         configuration.setAllowedMethods(
