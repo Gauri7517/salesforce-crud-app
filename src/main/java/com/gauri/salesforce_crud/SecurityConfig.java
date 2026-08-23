@@ -14,7 +14,7 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
-    @Value("${frontend.url:http://localhost:5173}")
+    @Value("${frontend.url:https://salesforce-crud-app-hnrn.onrender.com}")
     private String frontendUrl;
 
     @Bean
@@ -46,40 +46,37 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
-        CorsConfiguration configuration =
-                new CorsConfiguration();
+        CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of(
-                    frontendUrl,
-                    "http://localhost:5173",
-                    "http://localhost:5174",
-                    "http://localhost:5175"
-                )
+            List.of(
+                "https://salesforce-crud-app-hnrn.onrender.com",
+                "http://localhost:5173"
+            )
         );
 
         configuration.setAllowedMethods(
-                List.of(
-                    "GET",
-                    "POST",
-                    "PUT",
-                    "DELETE",
-                    "OPTIONS"
-                )
+            List.of(
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "OPTIONS"
+            )
         );
 
         configuration.setAllowedHeaders(
-                List.of("*")
+            List.of("*")
         );
 
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
+            new UrlBasedCorsConfigurationSource();
 
         source.registerCorsConfiguration(
-                "/**",
-                configuration
+            "/**",
+            configuration
         );
 
         return source;
