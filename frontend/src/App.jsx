@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-const API_URL = "https://salesforce-crud-backend-iwqw.onrender.com";
-/* =========================================================
-   SALESFORCE OBJECT CONFIGURATION
-========================================================= */
+
+const API_URL =
+  "https://salesforce-crud-backend-iwqw.onrender.com";
 
 const OBJECT_CONFIG = {
   accounts: {
     label: "Account",
     pluralLabel: "Accounts",
     endpoint: "/salesforce/accounts",
-
     fields: [
       { key: "Name", label: "Account Name", type: "text" },
       { key: "Phone", label: "Phone", type: "text" },
@@ -18,9 +16,13 @@ const OBJECT_CONFIG = {
       { key: "Industry", label: "Industry", type: "text" },
       { key: "Type", label: "Type", type: "text" },
     ],
-
-    displayFields: ["Name", "Phone", "Website", "Industry", "Type"],
-
+    displayFields: [
+      "Name",
+      "Phone",
+      "Website",
+      "Industry",
+      "Type",
+    ],
     createFields: [
       { key: "Name", label: "Account Name", type: "text" },
     ],
@@ -30,7 +32,6 @@ const OBJECT_CONFIG = {
     label: "Opportunity",
     pluralLabel: "Opportunities",
     endpoint: "/salesforce/opportunities",
-
     fields: [
       { key: "Name", label: "Opportunity Name", type: "text" },
       { key: "Amount", label: "Amount", type: "number" },
@@ -38,7 +39,6 @@ const OBJECT_CONFIG = {
       { key: "CloseDate", label: "Close Date", type: "date" },
       { key: "Type", label: "Type", type: "text" },
     ],
-
     displayFields: [
       "Name",
       "Amount",
@@ -46,7 +46,6 @@ const OBJECT_CONFIG = {
       "CloseDate",
       "Type",
     ],
-
     createFields: [
       { key: "Name", label: "Opportunity Name", type: "text" },
       { key: "Amount", label: "Amount", type: "number" },
@@ -59,7 +58,6 @@ const OBJECT_CONFIG = {
     label: "Lead",
     pluralLabel: "Leads",
     endpoint: "/salesforce/leads",
-
     fields: [
       { key: "FirstName", label: "First Name", type: "text" },
       { key: "LastName", label: "Last Name", type: "text" },
@@ -67,7 +65,6 @@ const OBJECT_CONFIG = {
       { key: "Email", label: "Email", type: "email" },
       { key: "Phone", label: "Phone", type: "text" },
     ],
-
     displayFields: [
       "FirstName",
       "LastName",
@@ -75,29 +72,12 @@ const OBJECT_CONFIG = {
       "Email",
       "Phone",
     ],
-
     createFields: [
       { key: "FirstName", label: "First Name", type: "text" },
-      {
-        key: "LastName",
-        label: "Last Name",
-        type: "text",
-      },
-      {
-        key: "Company",
-        label: "Company",
-        type: "text",
-      },
-      {
-        key: "Email",
-        label: "Email",
-        type: "email",
-      },
-      {
-        key: "Phone",
-        label: "Phone",
-        type: "text",
-      },
+      { key: "LastName", label: "Last Name", type: "text" },
+      { key: "Company", label: "Company", type: "text" },
+      { key: "Email", label: "Email", type: "email" },
+      { key: "Phone", label: "Phone", type: "text" },
     ],
   },
 
@@ -105,7 +85,6 @@ const OBJECT_CONFIG = {
     label: "Contact",
     pluralLabel: "Contacts",
     endpoint: "/salesforce/contacts",
-
     fields: [
       { key: "FirstName", label: "First Name", type: "text" },
       { key: "LastName", label: "Last Name", type: "text" },
@@ -113,7 +92,6 @@ const OBJECT_CONFIG = {
       { key: "Phone", label: "Phone", type: "text" },
       { key: "Department", label: "Department", type: "text" },
     ],
-
     displayFields: [
       "FirstName",
       "LastName",
@@ -121,29 +99,12 @@ const OBJECT_CONFIG = {
       "Phone",
       "Department",
     ],
-
     createFields: [
       { key: "FirstName", label: "First Name", type: "text" },
-      {
-        key: "LastName",
-        label: "Last Name",
-        type: "text",
-      },
-      {
-        key: "Email",
-        label: "Email",
-        type: "email",
-      },
-      {
-        key: "Phone",
-        label: "Phone",
-        type: "text",
-      },
-      {
-        key: "Department",
-        label: "Department",
-        type: "text",
-      },
+      { key: "LastName", label: "Last Name", type: "text" },
+      { key: "Email", label: "Email", type: "email" },
+      { key: "Phone", label: "Phone", type: "text" },
+      { key: "Department", label: "Department", type: "text" },
     ],
   },
 
@@ -151,7 +112,6 @@ const OBJECT_CONFIG = {
     label: "Case",
     pluralLabel: "Cases",
     endpoint: "/salesforce/cases",
-
     fields: [
       { key: "Subject", label: "Subject", type: "text" },
       { key: "Status", label: "Status", type: "text" },
@@ -159,7 +119,6 @@ const OBJECT_CONFIG = {
       { key: "Origin", label: "Origin", type: "text" },
       { key: "Type", label: "Type", type: "text" },
     ],
-
     displayFields: [
       "Subject",
       "Status",
@@ -167,76 +126,44 @@ const OBJECT_CONFIG = {
       "Origin",
       "Type",
     ],
-
     createFields: [
-      {
-        key: "Subject",
-        label: "Subject",
-        type: "text",
-      },
-      {
-        key: "Status",
-        label: "Status",
-        type: "text",
-      },
-      {
-        key: "Priority",
-        label: "Priority",
-        type: "text",
-      },
-      {
-        key: "Origin",
-        label: "Origin",
-        type: "text",
-      },
-      {
-        key: "Type",
-        label: "Type",
-        type: "text",
-      },
+      { key: "Subject", label: "Subject", type: "text" },
+      { key: "Status", label: "Status", type: "text" },
+      { key: "Priority", label: "Priority", type: "text" },
+      { key: "Origin", label: "Origin", type: "text" },
+      { key: "Type", label: "Type", type: "text" },
     ],
   },
 };
 
-/* =========================================================
-   APP
-========================================================= */
-
 function App() {
-  const [selectedObject, setSelectedObject] = useState("accounts");
+  const [selectedObject, setSelectedObject] =
+    useState("accounts");
 
   const [records, setRecords] = useState([]);
-
   const [loading, setLoading] = useState(false);
-
   const [loadingMore, setLoadingMore] = useState(false);
-
   const [message, setMessage] = useState("");
-
   const [page, setPage] = useState(0);
-
   const [hasMore, setHasMore] = useState(true);
-
   const [editingRecord, setEditingRecord] = useState(null);
-
   const [viewingRecord, setViewingRecord] = useState(null);
-
   const [formData, setFormData] = useState({});
 
   const config = OBJECT_CONFIG[selectedObject];
 
-  /* =========================================================
+  /* =========================
      LOGIN
-  ========================================================= */
+  ========================= */
 
   const loginWithSalesforce = () => {
     window.location.href =
       `${API_URL}/oauth2/authorization/salesforce`;
   };
 
-  /* =========================================================
-     GET RECORDS
-  ========================================================= */
+  /* =========================
+     LOAD RECORDS
+  ========================= */
 
   const loadRecords = async (
     objectKey = selectedObject,
@@ -252,7 +179,8 @@ function App() {
 
       setMessage("");
 
-      const objectConfig = OBJECT_CONFIG[objectKey];
+      const objectConfig =
+        OBJECT_CONFIG[objectKey];
 
       const response = await fetch(
         `${API_URL}${objectConfig.endpoint}?page=${pageNumber}`,
@@ -270,7 +198,8 @@ function App() {
 
       const data = await response.json();
 
-      const newRecords = data.records || [];
+      const newRecords =
+        data.records || [];
 
       if (append) {
         setRecords((previous) => [
@@ -283,13 +212,9 @@ function App() {
 
       setPage(pageNumber);
 
-      /*
-        Backend should return 20 records per page.
-        If fewer than 20 records are returned,
-        we know there are no more records.
-      */
-      setHasMore(newRecords.length === 20);
-
+      setHasMore(
+        newRecords.length === 20
+      );
     } catch (error) {
       console.error(
         "Load records error:",
@@ -309,57 +234,61 @@ function App() {
     }
   };
 
-  /* =========================================================
+  /* =========================
      OBJECT CHANGE
-  ========================================================= */
+  ========================= */
 
   const handleObjectChange = (event) => {
-    const newObject = event.target.value;
+    const newObject =
+      event.target.value;
 
     setSelectedObject(newObject);
-
     setRecords([]);
-
     setPage(0);
-
     setHasMore(true);
-
     setMessage("");
-
     setEditingRecord(null);
-
     setViewingRecord(null);
-
     setFormData({});
 
-    loadRecords(newObject, 0, false);
+    loadRecords(
+      newObject,
+      0,
+      false
+    );
   };
 
-  /* =========================================================
+  /* =========================
      INITIAL LOAD
-  ========================================================= */
+  ========================= */
 
   useEffect(() => {
-    loadRecords("accounts", 0, false);
+    loadRecords(
+      "accounts",
+      0,
+      false
+    );
   }, []);
 
-  /* =========================================================
+  /* =========================
      REFRESH
-  ========================================================= */
+  ========================= */
 
   const refreshRecords = () => {
     setRecords([]);
-
     setPage(0);
-
     setHasMore(true);
 
-    loadRecords(selectedObject, 0, false);
+    loadRecords(
+      selectedObject,
+      0,
+      false
+    );
   };
 
-  /* =========================================================
-     LOAD NEXT 20
-  ========================================================= */
+  /* =========================
+     LOAD NEXT PAGE
+  ========================= */
 
   const loadNextPage = () => {
     if (
@@ -377,9 +306,9 @@ function App() {
     );
   };
 
-  /* =========================================================
+  /* =========================
      SCROLL
-  ========================================================= */
+  ========================= */
 
   useEffect(() => {
     const handleScroll = () => {
@@ -390,11 +319,6 @@ function App() {
       const pageHeight =
         document.documentElement
           .scrollHeight;
-
-      /*
-        When user reaches near bottom,
-        load next 20 records.
-      */
 
       if (
         scrollPosition >=
@@ -423,15 +347,15 @@ function App() {
     hasMore,
   ]);
 
-  /* =========================================================
+  /* =========================
      FORM CHANGE
-  ========================================================= */
+  ========================= */
 
-  const handleFormChange = (
-    event
-  ) => {
-    const { name, value } =
-      event.target;
+  const handleFormChange = (event) => {
+    const {
+      name,
+      value,
+    } = event.target;
 
     setFormData((previous) => ({
       ...previous,
@@ -439,32 +363,26 @@ function App() {
     }));
   };
 
-  /* =========================================================
+  /* =========================
      CREATE
-  ========================================================= */
+  ========================= */
 
-  const createRecord = async (
-    event
-  ) => {
+  const createRecord = async (event) => {
     event.preventDefault();
 
     try {
       setLoading(true);
-
       setMessage("");
 
       const response = await fetch(
         `${API_URL}${config.endpoint}`,
         {
           method: "POST",
-
           credentials: "include",
-
           headers: {
             "Content-Type":
               "application/json",
           },
-
           body: JSON.stringify(
             formData
           ),
@@ -489,7 +407,6 @@ function App() {
         0,
         false
       );
-
     } catch (error) {
       console.error(
         "Create error:",
@@ -504,13 +421,11 @@ function App() {
     }
   };
 
-  /* =========================================================
+  /* =========================
      UPDATE
-  ========================================================= */
+  ========================= */
 
-  const updateRecord = async (
-    event
-  ) => {
+  const updateRecord = async (event) => {
     event.preventDefault();
 
     if (!editingRecord) {
@@ -519,21 +434,17 @@ function App() {
 
     try {
       setLoading(true);
-
       setMessage("");
 
       const response = await fetch(
         `${API_URL}${config.endpoint}/${editingRecord.Id}`,
         {
           method: "PUT",
-
           credentials: "include",
-
           headers: {
             "Content-Type":
               "application/json",
           },
-
           body: JSON.stringify(
             formData
           ),
@@ -552,7 +463,6 @@ function App() {
       );
 
       setEditingRecord(null);
-
       setFormData({});
 
       await loadRecords(
@@ -560,7 +470,6 @@ function App() {
         0,
         false
       );
-
     } catch (error) {
       console.error(
         "Update error:",
@@ -575,13 +484,11 @@ function App() {
     }
   };
 
-  /* =========================================================
+  /* =========================
      EDIT
-  ========================================================= */
+  ========================= */
 
-  const editRecord = (
-    record
-  ) => {
+  const editRecord = (record) => {
     setEditingRecord(record);
 
     const initialData = {};
@@ -594,9 +501,7 @@ function App() {
     );
 
     setFormData(initialData);
-
     setViewingRecord(null);
-
     setMessage("");
 
     window.scrollTo({
@@ -605,39 +510,29 @@ function App() {
     });
   };
 
-  /* =========================================================
+  /* =========================
      CANCEL EDIT
-  ========================================================= */
+  ========================= */
 
   const cancelEdit = () => {
     setEditingRecord(null);
-
     setFormData({});
-
     setMessage("");
   };
 
-  /* =========================================================
+  /* =========================
      VIEW
-  ========================================================= */
+  ========================= */
 
-  const viewRecord = async (
-    record
-  ) => {
-    try {
-      setViewingRecord(record);
-    } catch (error) {
-      console.error(error);
-    }
+  const viewRecord = (record) => {
+    setViewingRecord(record);
   };
 
-  /* =========================================================
+  /* =========================
      DELETE
-  ========================================================= */
+  ========================= */
 
-  const deleteRecord = async (
-    id
-  ) => {
+  const deleteRecord = async (id) => {
     const confirmed =
       window.confirm(
         `Are you sure you want to delete this ${config.label}?`
@@ -649,14 +544,12 @@ function App() {
 
     try {
       setLoading(true);
-
       setMessage("");
 
       const response = await fetch(
         `${API_URL}${config.endpoint}/${id}`,
         {
           method: "DELETE",
-
           credentials: "include",
         }
       );
@@ -668,16 +561,28 @@ function App() {
         throw new Error(result);
       }
 
+      /*
+       * IMPORTANT:
+       * Remove deleted record from
+       * frontend state immediately.
+       *
+       * Because count uses:
+       * records.length
+       *
+       * the count will decrease
+       * immediately after delete.
+       */
+
+      setRecords((previous) =>
+        previous.filter(
+          (record) =>
+            record.Id !== id
+        )
+      );
+
       setMessage(
         `${config.label} deleted successfully!`
       );
-
-      await loadRecords(
-        selectedObject,
-        0,
-        false
-      );
-
     } catch (error) {
       console.error(
         "Delete error:",
@@ -692,13 +597,11 @@ function App() {
     }
   };
 
-  /* =========================================================
+  /* =========================
      FORMAT VALUE
-  ========================================================= */
+  ========================= */
 
-  const formatValue = (
-    value
-  ) => {
+  const formatValue = (value) => {
     if (
       value === null ||
       value === undefined ||
@@ -709,10 +612,6 @@ function App() {
 
     return String(value);
   };
-
-  /* =========================================================
-     RETURN
-  ========================================================= */
 
   return (
     <div className="app">
@@ -729,7 +628,8 @@ function App() {
           </h1>
 
           <p>
-            Salesforce Object Management Dashboard
+            Salesforce Object Management
+            Dashboard
           </p>
         </div>
 
@@ -858,7 +758,6 @@ function App() {
             </button>
 
             {editingRecord && (
-
               <button
                 type="button"
                 className="cancel-btn"
@@ -868,17 +767,14 @@ function App() {
               >
                 Cancel
               </button>
-
             )}
 
           </form>
 
           {message && (
-
             <p className="message">
               {message}
             </p>
-
           )}
 
         </section>
@@ -904,26 +800,21 @@ function App() {
 
           {loading &&
             records.length === 0 && (
-
               <p className="loading">
                 Loading...
               </p>
-
             )}
 
           {!loading &&
             records.length === 0 && (
-
               <p className="empty">
                 No{" "}
                 {config.pluralLabel.toLowerCase()}{" "}
                 found.
               </p>
-
             )}
 
           {records.length > 0 && (
-
             <div className="table-wrapper">
 
               <table>
@@ -951,7 +842,6 @@ function App() {
                           );
 
                         return (
-
                           <th
                             key={field}
                           >
@@ -959,7 +849,6 @@ function App() {
                               ? fieldConfig.label
                               : field}
                           </th>
-
                         );
                       }
                     )}
@@ -996,7 +885,6 @@ function App() {
 
                         {config.displayFields.map(
                           (field) => (
-
                             <td
                               key={
                                 field
@@ -1008,13 +896,10 @@ function App() {
                                 ]
                               )}
                             </td>
-
                           )
                         )}
 
                         <td>
-
-                          {/* VIEW */}
 
                           <button
                             type="button"
@@ -1028,8 +913,6 @@ function App() {
                             View
                           </button>
 
-                          {/* EDIT */}
-
                           <button
                             type="button"
                             className="edit-btn"
@@ -1041,8 +924,6 @@ function App() {
                           >
                             Edit
                           </button>
-
-                          {/* DELETE */}
 
                           <button
                             type="button"
@@ -1068,29 +949,20 @@ function App() {
               </table>
 
             </div>
-
           )}
 
-          {/* =========================
-              LOAD MORE
-          ========================= */}
-
           {loadingMore && (
-
             <p className="loading">
               Loading next 20 records...
             </p>
-
           )}
 
           {!loadingMore &&
             !hasMore &&
             records.length > 0 && (
-
               <p className="empty">
                 All records loaded.
               </p>
-
             )}
 
         </section>
@@ -1121,14 +993,26 @@ function App() {
               {config.label} Details
             </h2>
 
+            <div className="detail-row">
+
+              <strong>
+                Salesforce ID:
+              </strong>
+
+              <span>
+                {formatValue(
+                  viewingRecord.Id
+                )}
+              </span>
+
+            </div>
+
             {config.fields.map(
               (field) => (
 
                 <div
                   className="detail-row"
-                  key={
-                    field.key
-                  }
+                  key={field.key}
                 >
 
                   <strong>

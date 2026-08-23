@@ -37,7 +37,9 @@ body {
   opacity: 0.9;
 }
 
-/* HEADER BUTTONS */
+/* =========================
+   HEADER BUTTONS
+========================= */
 
 .header-actions {
   display: flex;
@@ -149,6 +151,33 @@ input {
 }
 
 input:focus {
+  outline: none;
+  border-color: #0b5cab;
+}
+
+/* =========================
+   OBJECT SELECT
+========================= */
+
+.object-select {
+  width: 100%;
+
+  padding: 13px;
+
+  border: 1px solid #ccd4df;
+
+  border-radius: 6px;
+
+  font-size: 15px;
+
+  background: white;
+
+  color: #172033;
+
+  cursor: pointer;
+}
+
+.object-select:focus {
   outline: none;
   border-color: #0b5cab;
 }
@@ -274,7 +303,33 @@ tr:hover {
 }
 
 /* =========================
-   EDIT
+   VIEW BUTTON
+========================= */
+
+.view-btn {
+  background: #eef7ee;
+
+  color: #218838;
+
+  border: none;
+
+  padding: 8px 14px;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  margin-right: 7px;
+
+  margin-bottom: 5px;
+}
+
+.view-btn:hover {
+  background: #dff0df;
+}
+
+/* =========================
+   EDIT BUTTON
 ========================= */
 
 .edit-btn {
@@ -291,6 +346,8 @@ tr:hover {
   cursor: pointer;
 
   margin-right: 7px;
+
+  margin-bottom: 5px;
 }
 
 .edit-btn:hover {
@@ -298,7 +355,7 @@ tr:hover {
 }
 
 /* =========================
-   DELETE
+   DELETE BUTTON
 ========================= */
 
 .delete-btn {
@@ -313,6 +370,8 @@ tr:hover {
   border-radius: 5px;
 
   cursor: pointer;
+
+  margin-bottom: 5px;
 }
 
 .delete-btn:hover {
@@ -333,11 +392,108 @@ tr:hover {
 }
 
 /* =========================
+   MODAL OVERLAY
+========================= */
+
+.modal-overlay {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
+
+  z-index: 9999;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+  background: white;
+
+  width: 100%;
+
+  max-width: 600px;
+
+  max-height: 80vh;
+
+  overflow-y: auto;
+
+  border-radius: 12px;
+
+  padding: 30px;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+  margin-top: 0;
+
+  margin-bottom: 20px;
+
+  color: #172033;
+}
+
+/* =========================
+   DETAIL ROW
+========================= */
+
+.detail-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid #e5e9ef;
+}
+
+.detail-row strong {
+  color: #172033;
+}
+
+.detail-row span {
+  color: #555;
+
+  text-align: right;
+
+  word-break: break-word;
+}
+
+/* =========================
+   MODAL ACTIONS
+========================= */
+
+.modal-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin-top: 25px;
+}
+
+/* =========================
    MOBILE
 ========================= */
 
 @media (max-width: 700px) {
-
   .header {
     padding: 20px;
 
@@ -410,147 +566,24 @@ tr:hover {
   table {
     min-width: 750px;
   }
+
   /* =========================
-   OBJECT SELECT
-========================= */
+     MOBILE MODAL
+  ========================= */
 
-.object-select {
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #ccd4df;
-  border-radius: 6px;
-  font-size: 15px;
-  background: white;
-  color: #172033;
-  cursor: pointer;
-}
+  .modal-overlay {
+    padding: 15px;
+  }
 
-.object-select:focus {
-  outline: none;
-  border-color: #0b5cab;
-}
+  .modal {
+    width: 100%;
 
+    max-width: 100%;
 
-/* =========================
-   VIEW BUTTON
-========================= */
+    max-height: 85vh;
 
-.view-btn {
-  background: #eef7ee;
-  color: #218838;
-
-  border: none;
-
-  padding: 8px 14px;
-
-  border-radius: 5px;
-
-  cursor: pointer;
-
-  margin-right: 7px;
-}
-
-.view-btn:hover {
-  background: #dff0df;
-}
-
-
-/* =========================
-   MODAL
-========================= */
-
-.modal-overlay {
-  position: fixed;
-
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  background: rgba(0, 0, 0, 0.45);
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  padding: 20px;
-
-  z-index: 1000;
-}
-
-.modal {
-  background: white;
-
-  width: 100%;
-
-  max-width: 600px;
-
-  max-height: 80vh;
-
-  overflow-y: auto;
-
-  border-radius: 12px;
-
-  padding: 30px;
-
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-}
-
-.modal h2 {
-  margin-top: 0;
-
-  color: #172033;
-}
-
-.detail-row {
-  display: flex;
-
-  justify-content: space-between;
-
-  gap: 20px;
-
-  padding: 13px 0;
-
-  border-bottom: 1px solid #e5e9ef;
-}
-
-.detail-row strong {
-  color: #172033;
-}
-
-.detail-row span {
-  color: #555;
-
-  text-align: right;
-}
-
-.modal-actions {
-  display: flex;
-
-  justify-content: flex-end;
-
-  margin-top: 25px;
-}
-
-
-/* =========================
-   ACTION BUTTON SPACING
-========================= */
-
-.view-btn,
-.edit-btn,
-.delete-btn {
-  margin-bottom: 5px;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
+    padding: 20px;
+  }
 
   .detail-row {
     flex-direction: column;
@@ -562,5 +595,11 @@ tr:hover {
     text-align: left;
   }
 
-}
+  .modal-actions {
+    justify-content: stretch;
+  }
+
+  .modal-actions .cancel-btn {
+    width: 100%;
+  }
 }
