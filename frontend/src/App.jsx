@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-
-const API_URL = "http://localhost:8080";
-
+const API_URL = "https://salesforce-crud-backend-iwqw.onrender.com";
 /* =========================================================
    SALESFORCE OBJECT CONFIGURATION
 ========================================================= */
